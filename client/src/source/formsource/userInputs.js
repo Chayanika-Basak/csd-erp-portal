@@ -3,13 +3,13 @@ export const userInputs = [
         id: "name",
         label: "Name",
         type: "text",
-        placeholder: "Enter name",
+        placeholder: "Enter name"
     },
     {
         id: "email",
         label: "Email",
         type: "email",
-        placeholder: "Enter email",
+        placeholder: "Enter email"
     },
     {
         id: "phone",
@@ -21,7 +21,7 @@ export const userInputs = [
         id: "password",
         label: "Password",
         type: "password",
-        placeholder: "Enter password"
+        placeholder: "Enter password",
     },
     {
         id: "username",

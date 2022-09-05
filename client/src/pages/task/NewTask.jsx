@@ -35,6 +35,7 @@ const NewTask = ({ inputs, title }) => {
   console.log(info)
 
   return (
+    <>
     <div className="new">
       {/* <Sidebar /> */}
       {/* <NavSidebar /> */}
@@ -76,6 +77,47 @@ const NewTask = ({ inputs, title }) => {
         </div>
       </div>
     </div>
+
+    {/* Start: Mobile/Tab Screen */}
+    <div className="flex flex-col lg:hidden">
+          <div className="m-6 p-4 shadow-md w-5/6 text-center">
+            <h2>{title}</h2>
+        
+            <form>
+                {inputs.map((input) => (
+                  <div className={`flex flex-col mb-6 mt-8`} key={input.id}>
+                    <label className="text-center">{input.label}</label>
+                    <input
+                      className={`text-center border-b ${input.class}`}
+                      onChange={handleChange}
+                      type={input.type}
+                      placeholder={input.placeholder}
+                      id={input.id}
+                    />
+                  </div>
+                ))}
+
+                <div className="flex flex-col mb-6 mt-8">
+                  <label>Assigned To</label>
+                  <select
+                    id="assignedTo"
+                    onChange={handleChange}
+                  >
+                    {roles.map((r) => (
+                      <option key={r.id} value={r.value} selected>{r.role}</option>
+                    ))}
+
+                  </select>
+
+              </div>
+
+                
+              </form>
+              <button onClick={handleClick} className="bg-[#008080] text-white mt-6 w-40 h-10 rounded-md">Create Task</button>
+          </div>
+        </div>
+    {/* End: Mobile/Tab Screen */}
+    </>
   );
 };
 

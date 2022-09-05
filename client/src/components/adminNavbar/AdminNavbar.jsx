@@ -8,6 +8,10 @@ import useFetch from "../../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 import AdminSidebar from "../AdminSidebar/AdminSidebar"
+import csd_logo from "../../pages/login/CSD_logo.png";
+import {HiMenu} from "react-icons/hi"
+import {FiMoon} from "react-icons/fi"
+import {CgBell} from "react-icons/cg"
 
 const AdminNavbar = () => {
   const { Dispatch } = useContext(DarkModeContext);
@@ -26,6 +30,7 @@ const AdminNavbar = () => {
 
 
   return (
+    <>
     <div className="navbar">
       {openSidebar && <AdminSidebar setOpen={setOpenSidebar} />}
 
@@ -53,6 +58,50 @@ const AdminNavbar = () => {
         </div>
       </div>
     </div>
+
+    {/* Start: Mobile Screen */}
+    <div className="lg:hidden border-b-2">
+      {openSidebar && <AdminSidebar setOpen={setOpenSidebar} />}
+        <div className="flex items-center justify-between">
+          <div className='my-3 mx-4 w-16 h-14'>
+            <img 
+            src={csd_logo}
+            alt="csd_logo"
+            className='w-full h-full'
+            />
+          </div>
+          
+          <div className="flex items-center gap-3">
+
+            {/* Dark Mode */}
+            <div className="hidden md:flex lg:hidden item">
+                <DarkModeOutlinedIcon
+                  className="icon"
+                  onClick={() => Dispatch({ type: "TOGGLE" })}
+                />
+            </div>
+
+            {/* Menu */}
+            <div className="item" onClick={() => setOpenSidebar(!openSidebar)}>
+              <HiMenu className="text-3xl" />
+            </div>
+
+            {/* Profile */}
+            <div className="w-8 mr-4 ml-2">
+              <img
+                src={user.profilePicture || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"}
+                alt=""
+                className="w-full rounded-full"
+                onClick={() => navigate(`/users/${user._id}`)}
+              />
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      {/* End: Mobile Screen */}
+    </>
   );
 };
 

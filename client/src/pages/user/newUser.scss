@@ -1,3 +1,5 @@
+@import "resNewUser.scss";
+
 .new {
   width: 100%;
   display: flex;
@@ -12,6 +14,10 @@
       padding: 10px;
       margin: 20px;
       display: flex;
+
+      @include mobile{
+        display:none;
+      }
 
       h1 {
         color: lightgray;
@@ -67,7 +73,7 @@
           width: 150px;
           padding: 10px;
           border: none;
-          background-color: teal;
+          background-color: #008080;
           color: white;
           font-weight: bold;
           cursor: pointer;

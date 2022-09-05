@@ -1,9 +1,12 @@
+@import "resEditUser.scss";
+
 .new {
   width: 100%;
   display: flex;
 
   .newContainer {
     flex: 6;
+
 
     .top,
     .bottom {
@@ -12,6 +15,10 @@
       padding: 10px;
       margin: 20px;
       display: flex;
+
+      @include mobile{
+        display: none;
+      }
 
       h1 {
         color: lightgray;
@@ -27,6 +34,10 @@
           height: 100px;
           border-radius: 50%;
           object-fit: cover;
+        }
+
+        @include mobile{
+          display: none;
         }
       }
 
@@ -61,6 +72,10 @@
             }
           }
 
+          @include mobile{
+            display: none;
+          }
+
         }
 
         #submit {
@@ -72,6 +87,10 @@
           font-weight: bold;
           cursor: pointer;
           margin-top: 10px;
+
+          @include mobile{
+            display: none;
+          }
         }
       }
     }

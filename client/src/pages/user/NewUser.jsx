@@ -57,6 +57,7 @@ const NewUser = ({ inputs, title }) => {
   console.log(info)
 
   return (
+    <>
     <div className="new">
       {/* <Sidebar /> */}
       {/* <NavSidebar /> */}
@@ -182,11 +183,136 @@ const NewUser = ({ inputs, title }) => {
               </div>
 
             </form>
-            <button onClick={handleClick}>Create User</button>
+            <button onClick={handleClick} className="form-btn">Create User</button>
           </div>
         </div>
       </div>
     </div>
+
+    {/* Start: Mobile/Tab Screen */}
+        <div className="flex flex-col lg:hidden">
+          <div className="m-6 p-4 shadow-md w-5/6 text-center">
+            <h2>{title}</h2>
+          
+            <div className="w-20 ml-24 my-6">
+              <img
+                src={
+                  file
+                    ? URL.createObjectURL(file)
+                    : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                }
+                alt=""
+              />
+            </div>
+            <form>
+              <label htmlFor="file">
+                Image: <DriveFolderUploadIcon className="icon" />
+              </label>
+              <input
+                type="file"
+                id="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                style={{ display: "none" }}
+              />
+
+                <div className="my-6">
+                  <label>Taken as GEC</label>
+                  <select
+                    id="isGEC"
+                    onChange={handleChange}
+                  >
+                    <option value={false}>-</option>
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
+                  </select>
+                </div>
+
+                {inputs.map((input) => (
+                  <div className={`flex flex-col ml-6 my-6`} key={input.id}>
+                    <label className="text-center">{input.label}</label>
+                    <input
+                      className="text-center border-b"
+                      onChange={handleChange}
+                      type={input.type}
+                      placeholder={input.placeholder}
+                      id={input.id}
+                    />
+                  </div>
+                ))}
+
+                <div className="mb-6 mt-8">
+                  <label>Year</label>
+                  <select
+                    className="ml-4"
+                    id="year"
+                    onChange={handleChange}
+                  >
+                    <option value={0}>-</option>
+                    <option value={1}>1st</option>
+                    <option value={2}>2nd</option>
+                    <option value={3}>3rd</option>
+                    <option value={4}>4th</option>
+                  </select>
+                </div>
+
+                <div className="flex flex-col mb-6 mt-8">
+                  <label>Choose a Team</label>
+                  <select
+                    id="team"
+                    onChange={handleChange}
+                  >
+                    {teams.map((t) => (
+                      <option key={t.id} value={t.team} selected>{t.team}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {info.team === "Integration Team" && <div className="flex flex-col mb-6 mt-8">
+                  <label>Choose a Sub Team</label>
+                  <select
+                    id="subteam"
+                    onChange={handleChange}
+                  >
+                    {integ_subteams.map((st) => (
+                      <option key={st.id} value={st.subteam} selected>{st.subteam}</option>
+                    ))}
+                  </select>
+                </div>}
+
+                {
+                  (info.team === "Adira" || info.team === "Cognito" || info.team === "Eudaimonia" || info.team === "Inayat" || info.team === "Pejas" || info.team === "Sashakt Drishti")
+                  && <div className="flex flex-col mb-6 mt-8">
+                    <label>Choose a Sub Team</label>
+                    <select
+                    className="w-28"
+                      id="subteam"
+                      onChange={handleChange}
+                    >
+                      {team_subteams.map((st) => (
+                        <option key={st.id} value={st.subteam} selected>{st.subteam}</option>
+                      ))}
+                    </select>
+                  </div>
+                }
+
+                <div className="flex flex-col mb-6 mt-8">
+                  <label>Choose a Role</label>
+                  <select
+                    className="w-70"
+                    id="role"
+                    onChange={handleChange}
+                  >
+                    {roles.map((r) => (
+                      <option key={r.id} value={r.role} selected>{r.role}</option>
+                    ))}
+                  </select>
+                </div>
+              </form>
+              <button onClick={handleClick} className="bg-[#008080] text-white mt-6 w-40 h-10 rounded-md">Create User</button>
+          </div>
+        </div>
+    {/* End: Mobile/Tab Screen */}    
+    </>
   );
 };
 

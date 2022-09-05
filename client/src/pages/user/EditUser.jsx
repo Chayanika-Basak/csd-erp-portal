@@ -74,6 +74,7 @@ const EditUser = ({ title, type }) => {
 
 
   return (
+    <>
     <div className="new">
       <div className="newContainer">
         {(type === "Admin") ? (<AdminNavbar />) : (<Navbar />)}
@@ -261,6 +262,206 @@ const EditUser = ({ title, type }) => {
         </div>
       </div>
     </div>
+    
+    {/* Start: Mobile/Tab Screen */}
+    <div className="flex flex-col lg:hidden">
+          <div className="m-6 p-4 shadow-md w-5/6 text-center">
+            <h2>{title}</h2>
+          
+            <div className="w-20 ml-24 my-6">
+              <img
+                src={
+                  file
+                    ? URL.createObjectURL(file)
+                    : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                }
+                alt=""
+              />
+            </div>
+            <form>
+              <label htmlFor="file">
+                Image: <DriveFolderUploadIcon className="icon" />
+              </label>
+              <input
+                type="file"
+                id="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                style={{ display: "none" }}
+              />
+
+                {type === "Admin" && 
+                  <div className="my-6">
+                    <label>Taken as GEC</label>
+                    <select
+                      id="isGEC"
+                      onChange={handleChange}
+                    >
+                      <option value={false}>-</option>
+                      <option value={false}>No</option>
+                      <option value={true}>Yes</option>
+                    </select>
+                  </div>
+                }
+
+                {/* {inputs.map((input) => (
+                  <div className={`flex flex-col ml-6 my-6`} key={input.id}>
+                    <label className="text-center">{input.label}</label>
+                    <input
+                      className="text-center border-b"
+                      onChange={handleChange}
+                      type={input.type}
+                      placeholder={input.placeholder}
+                      id={input.id}
+                    />
+                  </div>
+                ))} */}
+
+              <div className="flex flex-col ml-6 my-6">
+                <label className="text-center">Name</label>
+                <input
+                      className="text-center border-b"
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Enter name"
+                  id="name"
+                  value={info.name}
+                />
+              </div>
+
+              <div className="flex flex-col ml-6 my-6">
+                <label className="text-center">Email</label>
+                <input
+                  className="text-center border-b"
+                  onChange={handleChange}
+                  type="email"
+                  placeholder="Enter email"
+                  id="email"
+                  value={info.email}
+                />
+              </div>
+
+              <div className="flex flex-col ml-6 my-6">
+                <label className="text-center">Phone Number</label>
+                <input
+                  className="text-center border-b"
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Enter phone number"
+                  id="phone"
+                  value={info.phone}
+                />
+              </div>
+
+              {type === "Admin" && <div className="flex flex-col ml-6 my-6">
+                <label className="text-center">Username</label>
+                <input
+                  className="text-center border-b"
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Enter username"
+                  id="username"
+                  value={info.username}
+                />
+              </div>}
+
+              <div className="flex flex-col ml-6 my-6">
+                <label className="text-center">Branch</label>
+                <input
+                  className="text-center border-b"
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Enter branch"
+                  id="branch"
+                  value={info.branch}
+                />
+              </div>
+
+              {type === "Admin" && <div className="flex flex-col ml-6 my-6">
+                <label className="text-center">Folder Link</label>
+                <input
+                  className="text-center border-b"
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Enter user's folder"
+                  id="folderLink"
+                  value={info.folderLink}
+                />
+              </div>}
+
+              <div className="ml-6 my-6">
+                <label>Year</label>
+                <select
+                  id="year"
+                  onChange={handleChange}
+                  value={info.year}
+                >
+                  <option value={0}></option>
+                  <option value="1st">1st</option>
+                  <option value="2nd">2nd</option>
+                  <option value="3rd">3rd</option>
+                  <option value="4th">4th</option>
+                </select>
+              </div>
+
+                <div className="flex flex-col mb-6 mt-8">
+                  <label>Choose a Team</label>
+                  <select
+                    id="team"
+                    onChange={handleChange}
+                  >
+                    {teams.map((t) => (
+                      <option key={t.id} value={t.team} selected>{t.team}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {info.team === "Integration Team" && <div className="flex flex-col mb-6 mt-8">
+                  <label>Choose a Sub Team</label>
+                  <select
+                    id="subteam"
+                    onChange={handleChange}            
+                  >
+                    {integ_subteams.map((st) => (
+                      <option key={st.id} value={st.subteam} selected>{st.subteam}</option>
+                    ))}
+                  </select>
+                </div>}
+
+                {
+                  type === "Admin" && (info.team === "Adira" || info.team === "Cognito" || info.team === "Eudaimonia" || info.team === "Inayat" || info.team === "Pejas" || info.team === "Sashakt Drishti")
+                  && <div className="flex flex-col mb-6 mt-8">
+                    <label>Choose a Sub Team</label>
+                    <select
+                    className="w-28"
+                      id="subteam"
+                      onChange={handleChange}
+                    >
+                      {team_subteams.map((st) => (
+                        <option key={st.id} value={st.subteam} selected>{st.subteam}</option>
+                      ))}
+                    </select>
+                  </div>
+                }
+
+                {type === "Admin" && <div className="flex flex-col mb-6 mt-8">
+                  <label>Choose a Role</label>
+                  <select
+                    className="w-70"
+                    id="role"
+                    onChange={handleChange}
+                  >
+                    {roles.map((r) => (
+                      <option key={r.id} value={r.role} selected>{r.role}</option>
+                    ))}
+                  </select>
+                </div>
+                }
+              </form>
+              <button disabled={sending} onClick={handleClick} className="bg-[#008080] text-white mt-6 w-40 h-10 rounded-md">Edit User</button>
+          </div>
+        </div>
+    {/* End: Mobile/Tab Screen */}
+    </>
   );
 };
 
